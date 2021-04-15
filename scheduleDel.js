@@ -3,8 +3,8 @@ let FileModel = require("./model/fileSchema")
 const fs = require("fs")
 
 const delFiles = () => {
-    cron.schedule('* * * * *', async () => {
-        console.log('running a task every minute');
+    cron.schedule('0 * * * *', async () => {
+        console.log('running a task every one hour');
         const pastTime = new Date(Date.now() - 24 * 60 * 60 * 1000)
         try {
             const files = await FileModel.find({ createdAt: { $lt: pastTime } })
