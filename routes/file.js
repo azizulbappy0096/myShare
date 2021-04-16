@@ -80,11 +80,12 @@ router.get("/file/:uuid", async (req, res) => {
   const { uuid } = req.params;
 
   try {
-    const { fileName, fileSize } = await FileModel.findOne({ uuid });
+    const { fileName, fileSize, createdAt } = await FileModel.findOne({ uuid });
 
     res.status(200).json({
       fileName,
       fileSize,
+      createdAt
     });
   } catch (err) {
     res.status(500).json({
