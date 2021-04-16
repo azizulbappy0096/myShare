@@ -60,7 +60,8 @@ router.post("/file/upload", upload.single("shareFile"), async (req, res) => {
       });
     });
     const savedFile = await newFile.save();
-
+    // res.setHeader("Cache-Control", "public");
+    res.setHeader("Cache-Control", "no-store, max-age=0, no-cache");
     res.status(201).json({
       shareFile: `${baseUrl}file/${savedFile.uuid}`,
       uuid: savedFile.uuid,
